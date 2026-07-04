@@ -26,6 +26,7 @@ function PageLoader() {
 
 export default function App() {
   return (
+    <HashRouter>
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -46,5 +47,6 @@ export default function App() {
         </Route>
       </Routes>
     </Suspense>
+    </HashRouter>
   );
 }
