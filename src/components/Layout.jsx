@@ -4,13 +4,12 @@ import { Menu, X, Heart, Mail, MessageCircle, Phone } from 'lucide-react';
 import { CONFIG } from '../config';
 import { assetUrl } from '../utils/assetUrl';
 
-function NavLink({ to, href, children, className, onClick, isHome }) {
+function NavLink({ to, href, children, className, onClick }) {
   if (href) {
-    const target = isHome ? href : `/${href}`;
     return (
-      <a href={target} className={className} onClick={onClick}>
+      <Link to={{ pathname: '/', hash: href }} className={className} onClick={onClick}>
         {children}
-      </a>
+      </Link>
     );
   }
 
@@ -75,8 +74,20 @@ export default function Layout() {
   const whatsappMessage = encodeURIComponent('Hi, I want to know more about Swag Solutions.');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const sectionId = location.hash.slice(1);
+    const timer = setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30 selection:text-blue-900 flex flex-col">

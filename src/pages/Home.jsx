@@ -340,12 +340,13 @@ export default function Home() {
       <section id="home" className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-slate-950">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-35"
-          src={assetUrl('hero-video.mp4')}
+          src={assetUrl('hero-video1.mp4')}
           autoPlay
           muted
           loop
           playsInline
           poster={assetUrl('logo.png')}
+          preload="metadata"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,.94),rgba(2,6,23,.78),rgba(2,6,23,.38))]" />
 
@@ -376,20 +377,20 @@ export default function Home() {
                 Start a Project
                 <ArrowRight size={18} />
               </a>
-              <a
-                href="#tools"
+              <Link
+                to={{ pathname: '/', hash: '#tools' }}
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/15"
               >
                 Explore Tools
-              </a>
+              </Link>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {coreServices.map((service, index) => (
-              <a
+              <Link
                 key={service.title}
-                href="#services"
+                to={{ pathname: '/', hash: '#services' }}
                 className="service-reveal rounded-lg border border-white/12 bg-white/10 p-5 text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/15"
                 style={{ animationDelay: `${780 + index * 120}ms` }}
               >
@@ -398,7 +399,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-bold">{service.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-200">{service.desc}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -478,12 +479,12 @@ export default function Home() {
                   Download PDF brochure
                   <Download size={18} />
                 </a>
-                <a
-                  href="#tools"
+                <Link
+                  to={{ pathname: '/', hash: '#tools' }}
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/15"
                 >
                   View free tools
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -613,6 +614,8 @@ export default function Home() {
                       <img 
                         src={assetUrl('wedding/couple.png')}
                         alt="Couple Preview" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover" 
                         style={{ objectPosition: 'center 15%' }}
                       />
@@ -658,6 +661,8 @@ export default function Home() {
                       <img 
                         src={assetUrl('wedding/rings.png')}
                         alt="Rings Preview" 
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover" 
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#fffef9] via-transparent to-transparent" />
