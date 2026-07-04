@@ -1,0 +1,1 @@
+import{i as e,n as t}from"./jsx-runtime-CUBmso4R.js";var n=e(t(),1);function r({schema:e}){return(0,n.useEffect)(()=>{if(!e)return;let t=document.querySelector(`script[type="application/ld+json"]`);return t||(t=document.createElement(`script`),t.type=`application/ld+json`,document.head.appendChild(t)),t.text=JSON.stringify(e),()=>{t&&(t.text=``)}},[e]),null}export{r as t};
