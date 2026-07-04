@@ -2,6 +2,7 @@ import React from 'react';
 import { CONFIG } from '../config';
 import SEO from '../components/SEO';
 import SchemaMarkup from '../components/SchemaMarkup';
+import { assetUrl } from '../utils/assetUrl';
 import {
   ArrowRight,
   BarChart3,
@@ -113,7 +114,7 @@ export default function Gpos() {
                 <MessageCircle size={18} />
               </a>
               <a
-                href="/gpos-brochure.pdf"
+                href={assetUrl('gpos-brochure.pdf')}
                 download
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/15"
               >
@@ -126,7 +127,7 @@ export default function Gpos() {
           <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur">
             <div className="overflow-hidden rounded-lg bg-slate-900">
               <img
-                src="/gpos-dashboard.png"
+                src={assetUrl('gpos-dashboard.png')}
                 alt="GPoS dashboard screenshot"
                 className="h-auto min-h-64 w-full object-cover"
                 onError={(event) => {

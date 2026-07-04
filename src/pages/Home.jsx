@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CONFIG } from '../config';
 import SEO from '../components/SEO';
 import SchemaMarkup from '../components/SchemaMarkup';
+import { assetUrl } from '../utils/assetUrl';
 import {
   ArrowRight,
   BarChart3,
@@ -339,12 +340,12 @@ export default function Home() {
       <section id="home" className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-slate-950">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-35"
-          src="/hero-video.mp4"
+          src={assetUrl('hero-video.mp4')}
           autoPlay
           muted
           loop
           playsInline
-          poster="/logo.png"
+          poster={assetUrl('logo.png')}
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,.94),rgba(2,6,23,.78),rgba(2,6,23,.38))]" />
 
@@ -470,7 +471,7 @@ export default function Home() {
                   <MessageCircle size={18} />
                 </a>
                 <a
-                  href="/gpos-brochure.pdf"
+                  href={assetUrl('gpos-brochure.pdf')}
                   download
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/15"
                 >
@@ -610,7 +611,7 @@ export default function Home() {
                     {/* Couple Image Preview */}
                     <div className="relative overflow-hidden h-48">
                       <img 
-                        src="/wedding/couple.png" 
+                        src={assetUrl('wedding/couple.png')}
                         alt="Couple Preview" 
                         className="w-full h-full object-cover" 
                         style={{ objectPosition: 'center 15%' }}
@@ -655,7 +656,7 @@ export default function Home() {
                     {/* Rings Image Preview */}
                     <div className="relative overflow-hidden h-48">
                       <img 
-                        src="/wedding/rings.png" 
+                        src={assetUrl('wedding/rings.png')}
                         alt="Rings Preview" 
                         className="w-full h-full object-cover" 
                       />

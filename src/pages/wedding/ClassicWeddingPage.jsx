@@ -1,12 +1,14 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import SEO from "../../components/SEO";
+import { assetUrl } from "../../utils/assetUrl";
 import {
   CalendarDays, CheckCircle2, Copy, Heart,
   ImagePlus, MapPin, Phone, Sparkles
 } from "lucide-react";
 
-const COUPLE_IMG = "/wedding/couple.png";
-const HOTEL_IMG = "/wedding/hotel.jpeg";
+const COUPLE_IMG = assetUrl("wedding/couple.png");
+const HOTEL_IMG = assetUrl("wedding/hotel.jpeg");
+const COUPLE_VIDEO = assetUrl("wedding/couple-video.mp4");
 
 const defaultDetails = {
   bride:    "Sachini",
@@ -255,7 +257,7 @@ export default function ClassicWeddingPage() {
             {/* COUPLE VIDEO */}
             <div style={{ position:"relative", overflow:"hidden", maxHeight:480 }}>
               <video
-                src="/wedding/couple-video.mp4"
+                src={COUPLE_VIDEO}
                 poster={COUPLE_IMG}
                 autoPlay
                 muted

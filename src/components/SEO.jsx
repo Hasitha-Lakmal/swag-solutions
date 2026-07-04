@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 
 export default function SEO({ title, description, keywords, ogImage, ogUrl }) {
   useEffect(() => {
@@ -33,14 +34,14 @@ export default function SEO({ title, description, keywords, ogImage, ogUrl }) {
     setMetaTag('og:title', title || 'Swag Solutions - Free Tools, Wedding Cards & POS Systems', true);
     setMetaTag('og:description', description || 'Websites, custom systems, GPoS web-based POS, free business tools, and custom wedding invitation webpages for Sri Lankan businesses.', true);
     setMetaTag('og:type', 'website', true);
-    setMetaTag('og:image', ogImage || '/logo.png', true);
+    setMetaTag('og:image', ogImage || assetUrl('logo.png'), true);
     setMetaTag('og:url', ogUrl || window.location.href, true);
 
     // 4. Twitter
     setMetaTag('twitter:card', 'summary_large_image');
     setMetaTag('twitter:title', title || 'Swag Solutions - Free Tools, Wedding Cards & POS Systems');
     setMetaTag('twitter:description', description || 'Practical websites, software, GPoS POS systems, free tools, and digital invitation pages for Sri Lankan businesses.');
-    setMetaTag('twitter:image', ogImage || '/logo.png');
+    setMetaTag('twitter:image', ogImage || assetUrl('logo.png'));
 
   }, [title, description, keywords, ogImage, ogUrl]);
 

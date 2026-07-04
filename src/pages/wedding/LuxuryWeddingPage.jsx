@@ -1,14 +1,16 @@
 import { useMemo, useState, useEffect } from "react";
 import SEO from "../../components/SEO";
+import { assetUrl } from "../../utils/assetUrl";
 import {
   CalendarDays, CheckCircle2, Copy, Heart,
   MapPin, Phone, Sparkles, Music, Volume2, VolumeX,
   Clock, Gift, Compass
 } from "lucide-react";
 
-const COUPLE_IMG = "/wedding/couple.png";
-const RINGS_IMG = "/wedding/rings.png";
-const RECEPTION_IMG = "/wedding/reception.png";
+const COUPLE_IMG = assetUrl("wedding/couple.png");
+const RINGS_IMG = assetUrl("wedding/rings.png");
+const RECEPTION_IMG = assetUrl("wedding/reception.png");
+const COUPLE_VIDEO = assetUrl("wedding/couple-video.mp4");
 
 const defaultDetails = {
   bride:    "Sachini",
@@ -306,7 +308,7 @@ export default function LuxuryWeddingPage() {
             {/* TOP LUXURY VIDEO */}
             <div style={{ position: "relative", height: 260, overflow: "hidden" }}>
               <video
-                src="/wedding/couple-video.mp4"
+                src={COUPLE_VIDEO}
                 poster={COUPLE_IMG}
                 autoPlay
                 muted

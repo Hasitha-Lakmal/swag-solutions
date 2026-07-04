@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart, Mail, MessageCircle, Phone } from 'lucide-react';
 import { CONFIG } from '../config';
+import { assetUrl } from '../utils/assetUrl';
 
 function NavLink({ to, href, children, className, onClick, isHome }) {
   if (href) {
@@ -84,7 +85,7 @@ export default function Layout() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <Link to="/" className="text-lg sm:text-2xl font-extrabold tracking-tight flex items-center gap-2.5">
-                <img src="/logo.png" alt="Swag Solutions Logo" className="w-8 h-8 drop-shadow-sm hover:scale-105 transition-transform" />
+                <img src={assetUrl('logo.png')} alt="Swag Solutions Logo" className="w-8 h-8 drop-shadow-sm hover:scale-105 transition-transform" />
                 <span>SWAG <span className="text-blue-600 font-medium">SOLUTIONS</span></span>
               </Link>
             </div>
