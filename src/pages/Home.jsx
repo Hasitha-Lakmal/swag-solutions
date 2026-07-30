@@ -291,13 +291,35 @@ export default function Home() {
         }
 
         @keyframes heroShine {
-          from { background-position: 120% center; }
-          to { background-position: -120% center; }
+          from { background-position: 200% center; }
+          to { background-position: -200% center; }
         }
 
         @keyframes serviceRise {
           from { opacity: 0; transform: translateY(22px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes ringRotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes glowPulse {
+          0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+          50% { box-shadow: 0 0 45px rgba(59, 130, 246, 0.6); }
+        }
+
+        @keyframes orbFloat {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+          25% { transform: translate(40px, -25px) scale(1.15); opacity: 0.35; }
+          50% { transform: translate(-15px, -50px) scale(0.85); opacity: 0.15; }
+          75% { transform: translate(-40px, -15px) scale(1.1); opacity: 0.3; }
+        }
+
+        @keyframes shimmerBadge {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
 
         .hero-title-line {
@@ -326,85 +348,133 @@ export default function Home() {
           animation-range: entry 8% cover 32%;
         }
 
+        .hero-bg-gradient {
+          background-size: cover;
+        }
+
+        .hero-orb {
+          animation: orbFloat 14s ease-in-out infinite;
+        }
+        .hero-orb-2 {
+          animation: orbFloat 18s ease-in-out 4s infinite reverse;
+        }
+        .hero-orb-3 {
+          animation: orbFloat 16s ease-in-out 8s infinite;
+        }
+
+        .hero-cta-glow {
+          animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        .hero-badge-shimmer {
+          background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.08) 100%);
+          background-size: 200% 100%;
+          animation: shimmerBadge 4s ease-in-out infinite;
+        }
+
+        .hero-card-reveal {
+          animation: heroReveal .7s cubic-bezier(.2,.8,.2,1) both;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .hero-title-line,
           .hero-copy-reveal,
           .hero-title-swag,
-          .service-reveal {
+          .service-reveal,
+          .hero-card-reveal,
+          .hero-orb,
+          .hero-orb-2,
+          .hero-orb-3 {
             animation: none;
             opacity: 1;
+          }
+          [style*="ringRotate"] {
+            animation: none !important;
           }
         }
       `}</style>
 
-      <section id="home" className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-slate-950">
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-          src={assetUrl('hero-video1.mp4')}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={assetUrl('logo.png')}
-          preload="metadata"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,.94),rgba(2,6,23,.78),rgba(2,6,23,.38))]" />
+      <section id="home" className="relative overflow-hidden bg-slate-950 text-white">
+        <div className="hero-bg-gradient absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_90%,rgba(37,99,235,.22),transparent_55%),radial-gradient(ellipse_70%_55%_at_85%_15%,rgba(139,92,246,.18),transparent_50%),radial-gradient(ellipse_50%_40%_at_50%_50%,rgba(16,185,129,.08),transparent_45%),linear-gradient(180deg,rgba(15,23,42,.97),rgba(15,23,42,.92)_50%,rgba(30,41,59,.6))]" />
+        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,.65)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.65)_1px,transparent_1px)] [background-size:44px_44px]" />
 
-        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-[1.05fr_.95fr]">
+        <div className="hero-orb pointer-events-none absolute -left-40 bottom-0 h-[30rem] w-[30rem] rounded-full bg-blue-600/15 blur-3xl" />
+        <div className="hero-orb-2 pointer-events-none absolute -right-32 top-0 h-[28rem] w-[28rem] rounded-full bg-violet-500/12 blur-3xl" />
+        <div className="hero-orb-3 pointer-events-none absolute left-1/3 top-1/4 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
+
+        <div className="pointer-events-none absolute right-[-5%] top-[10%] h-[600px] w-[600px] rounded-full border border-white/[0.04] opacity-60" style={{ animation: 'ringRotate 40s linear infinite' }} />
+
+        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[.95fr_1.05fr]">
           <div className="max-w-2xl">
-            <div className="hero-copy-reveal mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-slate-100 backdrop-blur">
-              <CheckCircle2 size={16} className="text-emerald-300" />
-              Web, software, tools, and digital invitations
+            <div className="hero-copy-reveal hero-badge-shimmer mb-5 inline-flex items-center gap-2 overflow-hidden rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-slate-100 backdrop-blur">
+              <ShieldCheck size={16} className="text-emerald-300" />
+              Websites, POS systems, tools, and wedding pages
             </div>
 
             <h1 className="text-4xl font-black leading-tight text-white md:text-6xl">
-              <span className="hero-title-line block">Stop overthinking.</span>
-              <span className="hero-title-swag block bg-clip-text text-transparent">Just Swag It.</span>
+              <span className="hero-title-line block">Build it fast.</span>
+              <span className="hero-title-swag block bg-clip-text text-transparent">Run it smarter.</span>
             </h1>
 
             <p className="hero-copy-reveal mt-6 max-w-xl text-lg leading-8 text-slate-200" style={{ animationDelay: '520ms' }}>
               Swag Solutions builds practical digital products for Sri Lankan businesses:
-              websites, custom systems, free tools, and polished event experiences.
+              polished websites, GPoS POS systems, useful browser tools, and custom wedding invitation pages.
             </p>
 
-            <div className="hero-copy-reveal mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: '680ms' }}>
+            <div className="hero-copy-reveal mt-8 grid gap-3 text-sm text-slate-200 sm:grid-cols-3" style={{ animationDelay: '620ms' }}>
+              {[
+                { icon: Globe, label: 'Web builds', color: 'text-sky-300', hover: 'hover:border-sky-500/30 hover:bg-sky-500/10' },
+                { icon: Table, label: 'GPoS POS', color: 'text-emerald-300', hover: 'hover:border-emerald-500/30 hover:bg-emerald-500/10' },
+                { icon: Heart, label: 'Wedding cards', color: 'text-rose-300', hover: 'hover:border-rose-500/30 hover:bg-rose-500/10' },
+              ].map(({ icon: Icon, label, color, hover }) => (
+                <div key={label} className={`flex cursor-default items-center gap-2 rounded-lg border border-white/10 bg-white/8 px-3 py-2 transition-all duration-300 ${hover}`}>
+                  <Icon size={16} className={color} />
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            <div className="hero-copy-reveal mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: '720ms' }}>
               <a
                 href={`https://wa.me/${CONFIG.contact.whatsappNumber}?text=${projectMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
+                className="hero-cta-glow inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition-all duration-300 hover:bg-blue-500 hover:scale-[1.03]"
               >
                 Start a Project
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <Link
                 to={{ pathname: '/', hash: '#tools' }}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/15"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition-all duration-300 hover:bg-white/15 hover:scale-[1.02]"
               >
-                Explore Tools
+                Explore Free Tools
               </Link>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {coreServices.map((service, index) => (
-              <Link
-                key={service.title}
-                to={{ pathname: '/', hash: '#services' }}
-                className="service-reveal rounded-lg border border-white/12 bg-white/10 p-5 text-white backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/15"
-                style={{ animationDelay: `${780 + index * 120}ms` }}
+          <div className="hero-copy-reveal hidden lg:grid grid-cols-2 gap-4 self-center" style={{ animationDelay: '780ms' }}>
+            {[
+              { icon: Globe, title: 'Web Solutions', desc: 'Fast, responsive websites and web apps.', color: 'text-sky-300', bg: 'bg-sky-500/10', border: 'hover:border-sky-400/30' },
+              { icon: Table, title: 'GPoS POS', desc: 'Complete point-of-sale for shops.', color: 'text-emerald-300', bg: 'bg-emerald-500/10', border: 'hover:border-emerald-400/30' },
+              { icon: QrCode, title: 'Free Tools', desc: 'Useful browser-based utilities.', color: 'text-blue-300', bg: 'bg-blue-500/10', border: 'hover:border-blue-400/30' },
+              { icon: Heart, title: 'Wedding Cards', desc: 'Custom invitation webpages.', color: 'text-rose-300', bg: 'bg-rose-500/10', border: 'hover:border-rose-400/30' },
+            ].map(({ icon: Icon, title, desc, color, bg, border }, i) => (
+              <div
+                key={title}
+                className={`hero-card-reveal group rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 ${border}`}
+                style={{ animationDelay: `${780 + i * 100}ms` }}
               >
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-white text-slate-950">
-                  {service.icon}
+                <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-lg ${bg}`}>
+                  <Icon size={20} className={color} />
                 </div>
-                <h3 className="text-lg font-bold">{service.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-200">{service.desc}</p>
-              </Link>
+                <h3 className="text-sm font-bold text-white">{title}</h3>
+                <p className="mt-1 text-xs leading-5 text-slate-400">{desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
       <section id="services" className="border-b border-slate-200 px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-end">
