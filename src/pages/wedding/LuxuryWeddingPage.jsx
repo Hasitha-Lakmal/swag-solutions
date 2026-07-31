@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SEO from "../../components/SEO";
 import { assetUrl } from "../../utils/assetUrl";
 import {
@@ -174,9 +175,10 @@ export default function LuxuryWeddingPage() {
   // RSVP Form States
   const [rsvpForm, setRsvpForm] = useState({ name: "", guests: "1", wishes: "" });
   const [rsvpSent, setRsvpSent] = useState(false);
+  const location = useLocation();
 
   const details = useMemo(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     return {
       bride:    getParam(params, "bride"),
       groom:    getParam(params, "groom"),
@@ -190,11 +192,15 @@ export default function LuxuryWeddingPage() {
       location: getParam(params, "location"),
       phone:    getParam(params, "phone"),
     };
-  }, []);
+  }, [location.search]);
 
-  const sampleLink = `${window.location.origin}/wedding/navy?guest=Amali&bride=Sachini&groom=Tharindu`;
+  const [guestName, setGuestName] = useState(details.guest === "Dear Guest" ? "" : details.guest);
+  const currentGuest = guestName.trim() || details.guest;
 
-  const copyLink = async (textToCopy = sampleLink) => {
+  const cardsSite = window.location.hostname === 'cards.swagsolutions.lk';
+  const shareLink = `${window.location.origin}${window.location.pathname}#${cardsSite ? '' : '/wedding'}/navy?guest=${encodeURIComponent(currentGuest)}&bride=${encodeURIComponent(details.bride)}&groom=${encodeURIComponent(details.groom)}`;
+
+  const copyLink = async (textToCopy = shareLink) => {
     await navigator.clipboard.writeText(textToCopy);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
@@ -309,7 +315,6 @@ export default function LuxuryWeddingPage() {
             <div style={{ position: "relative", height: 260, overflow: "hidden" }}>
               <video
                 src={COUPLE_VIDEO}
-                poster={COUPLE_IMG}
                 autoPlay
                 muted
                 loop
@@ -337,7 +342,7 @@ export default function LuxuryWeddingPage() {
             {/* GUEST INVITATION CARD */}
             <div style={{ margin: "0 24px", background: "linear-gradient(135deg, #091325 0%, #152d50 100%)", border: "1px solid #dfb76c", borderRadius: 8, padding: "20px", textAlign: "center", boxShadow: "0 10px 25px rgba(9,19,37,0.15)" }}>
               <p style={{ fontFamily: "'Jost',sans-serif", fontSize: ".54rem", letterSpacing: ".35em", textTransform: "uppercase", color: "#dfb76c", marginBottom: 8 }}>Cordially Invited</p>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "1.5rem", color: "#fffef9", marginBottom: 6 }}>{details.guest}</p>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: "italic", fontSize: "1.5rem", color: "#fffef9", marginBottom: 6 }}>{currentGuest}</p>
               <p style={{ fontFamily: "'Jost',sans-serif", fontSize: ".75rem", fontWeight: 300, color: "#f3e1b9", lineHeight: 1.8, opacity: 0.9 }}>
                 Together with our families, we request the honor of your presence as we celebrate the start of our journey together.
               </p>
@@ -534,9 +539,17 @@ export default function LuxuryWeddingPage() {
 
             <div style={{ marginTop: 28, background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: 18 }}>
               <p style={{ fontSize: 14, fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>Shareable link preview</p>
-              <p style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 8, padding: "10px 12px", fontSize: 13, color: "#475569", wordBreak: "break-all" }}>{sampleLink}</p>
+              <label style={{ display: "block", fontSize: 12, fontWeight: 600, color: "#475569", marginBottom: 6 }}>Guest name</label>
+              <input
+                value={guestName}
+                onChange={(e) => setGuestName(e.target.value)}
+                placeholder="e.g. Tharindu"
+                style={{ width: "100%", padding: "9px 12px", border: "1px solid #e2e8f0", borderRadius: 8, fontSize: 13, outline: "none", marginBottom: 4 }}
+              />
+              <p style={{ fontSize: 11, color: "#94a3b8", marginBottom: 10 }}>The card will show the name you type — copy the updated link and send it to that guest.</p>
+              <p style={{ background: "#fff", border: "1px solid #e2e8f0", borderRadius: 8, padding: "10px 12px", fontSize: 13, color: "#475569", wordBreak: "break-all" }}>{shareLink}</p>
               <button
-                onClick={() => copyLink(sampleLink)}
+                onClick={() => copyLink(shareLink)}
                 style={{ marginTop: 12, display: "inline-flex", alignItems: "center", gap: 8, background: "#0f172a", color: "#fff", border: "none", borderRadius: 8, padding: "9px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
               >
                 <Compass size={15} /> {copied ? "Copied ✓" : "Copy preview link"}

@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import SEO from "../../components/SEO";
 import { assetUrl } from "../../utils/assetUrl";
 import {
@@ -6,7 +7,6 @@ import {
   ImagePlus, MapPin, Phone, Sparkles
 } from "lucide-react";
 
-const COUPLE_IMG = assetUrl("wedding/couple.png");
 const HOTEL_IMG = assetUrl("wedding/hotel.jpeg");
 const COUPLE_VIDEO = assetUrl("wedding/couple-video.mp4");
 
@@ -180,9 +180,10 @@ function BotanicalDivider() {
 
 export default function ClassicWeddingPage() {
   const [copied, setCopied] = useState(false);
+  const location = useLocation();
 
   const details = useMemo(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(location.search);
     return {
       bride:    getParam(params, "bride"),
       groom:    getParam(params, "groom"),
@@ -196,12 +197,16 @@ export default function ClassicWeddingPage() {
       location: getParam(params, "location"),
       phone:    getParam(params, "phone"),
     };
-  }, []);
+  }, [location.search]);
 
-  const sampleLink = `${window.location.origin}/wedding/classic?guest=Amali&bride=Sachini&groom=Tharindu`;
+  const [guestName, setGuestName] = useState(details.guest === "Dear Guest" ? "" : details.guest);
+  const currentGuest = guestName.trim() || details.guest;
+
+  const cardsSite = window.location.hostname === 'cards.swagsolutions.lk';
+  const shareLink = `${window.location.origin}${window.location.pathname}#${cardsSite ? '' : '/wedding'}/classic?guest=${encodeURIComponent(currentGuest)}&bride=${encodeURIComponent(details.bride)}&groom=${encodeURIComponent(details.groom)}`;
 
   const copyLink = async () => {
-    await navigator.clipboard.writeText(sampleLink);
+    await navigator.clipboard.writeText(shareLink);
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
   };
@@ -258,7 +263,6 @@ export default function ClassicWeddingPage() {
             <div style={{ position:"relative", overflow:"hidden", maxHeight:480 }}>
               <video
                 src={COUPLE_VIDEO}
-                poster={COUPLE_IMG}
                 autoPlay
                 muted
                 loop
@@ -287,7 +291,7 @@ export default function ClassicWeddingPage() {
             {/* GUEST */}
             <div style={{ margin:"0 24px", background:"linear-gradient(135deg,#fdf8ec,#f5edcc)", border:"1px solid #d4c090", borderTop:"2px solid #c9a84c", padding:"18px 20px", textAlign:"center" }}>
               <p style={{ fontFamily:"'Jost',sans-serif", fontSize:".54rem", letterSpacing:".35em", textTransform:"uppercase", color:"#8b6914", marginBottom:6 }}>You are cordially invited</p>
-              <p style={{ fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"1.5rem", color:"#1a2e1a", marginBottom:6 }}>{details.guest}</p>
+              <p style={{ fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"1.5rem", color:"#1a2e1a", marginBottom:6 }}>{currentGuest}</p>
               <p style={{ fontFamily:"'Jost',sans-serif", fontSize:".78rem", fontWeight:300, color:"#3d4a2a", lineHeight:1.8 }}>
                 We joyfully request the honour of your presence<br/>as we celebrate the joy of our marriage
               </p>
@@ -391,7 +395,15 @@ export default function ClassicWeddingPage() {
 
             <div style={{ marginTop:28, background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:10, padding:18 }}>
               <p style={{ fontSize:14, fontWeight:700, color:"#0f172a", marginBottom:8 }}>Shareable link preview</p>
-              <p style={{ background:"#fff", border:"1px solid #e2e8f0", borderRadius:8, padding:"10px 12px", fontSize:13, color:"#475569", wordBreak:"break-all" }}>{sampleLink}</p>
+              <label style={{ display:"block", fontSize:12, fontWeight:600, color:"#475569", marginBottom:6 }}>Guest name</label>
+              <input
+                value={guestName}
+                onChange={(e) => setGuestName(e.target.value)}
+                placeholder="e.g. Tharindu"
+                style={{ width:"100%", padding:"9px 12px", border:"1px solid #e2e8f0", borderRadius:8, fontSize:13, outline:"none", marginBottom:4 }}
+              />
+              <p style={{ fontSize:11, color:"#94a3b8", marginBottom:10 }}>The card will show the name you type — copy the updated link and send it to that guest.</p>
+              <p style={{ background:"#fff", border:"1px solid #e2e8f0", borderRadius:8, padding:"10px 12px", fontSize:13, color:"#475569", wordBreak:"break-all" }}>{shareLink}</p>
               <button
                 onClick={copyLink}
                 style={{ marginTop:12, display:"inline-flex", alignItems:"center", gap:8, background:"#0f172a", color:"#fff", border:"none", borderRadius:8, padding:"9px 16px", fontSize:13, fontWeight:600, cursor:"pointer" }}

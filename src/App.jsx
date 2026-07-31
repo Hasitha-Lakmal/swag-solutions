@@ -24,7 +24,25 @@ function PageLoader() {
   );
 }
 
+const isCardsSite =
+  typeof window !== 'undefined' && window.location.hostname === 'cards.swagsolutions.lk';
+
 export default function App() {
+  if (isCardsSite) {
+    return (
+      <HashRouter>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Navigate to="/classic" replace />} />
+            <Route path="/classic" element={<ClassicWeddingPage />} />
+            <Route path="/navy" element={<LuxuryWeddingPage />} />
+            <Route path="*" element={<Navigate to="/classic" replace />} />
+          </Routes>
+        </Suspense>
+      </HashRouter>
+    );
+  }
+
   return (
     <HashRouter>
     <Suspense fallback={<PageLoader />}>

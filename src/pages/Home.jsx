@@ -6,6 +6,7 @@ import SchemaMarkup from '../components/SchemaMarkup';
 import { assetUrl } from '../utils/assetUrl';
 import {
   ArrowRight,
+  ArrowUpRight,
   BarChart3,
   Boxes,
   Calculator,
@@ -182,6 +183,13 @@ const aboutPoints = [
   'Custom support after launch when the business grows',
 ];
 
+const heroCards = [
+  { icon: Globe, title: 'Web Solutions', desc: 'Fast, responsive websites and web apps.', tag: 'Websites · Dashboards · E-commerce', to: { pathname: '/', hash: '#services' }, color: 'text-sky-300', bg: 'bg-sky-500/10', border: 'hover:border-sky-400/30' },
+  { icon: Table, title: 'GPoS POS', desc: 'Complete point-of-sale for shops.', tag: 'Billing · Inventory · Reports', to: '/gpos', color: 'text-emerald-300', bg: 'bg-emerald-500/10', border: 'hover:border-emerald-400/30' },
+  { icon: QrCode, title: 'Free Tools', desc: 'Useful browser-based utilities.', tag: '9+ tools · 100% free', to: { pathname: '/', hash: '#tools' }, color: 'text-blue-300', bg: 'bg-blue-500/10', border: 'hover:border-blue-400/30' },
+  { icon: Heart, title: 'Wedding Cards', desc: 'Custom invitation webpages.', tag: 'Packages from LKR 2,000', to: '/wedding/classic', color: 'text-rose-300', bg: 'bg-rose-500/10', border: 'hover:border-rose-400/30' },
+];
+
 function ToolCard({ tool }) {
   return (
     <Link
@@ -271,6 +279,35 @@ const homeSchema = {
 
 export default function Home() {
   const [previewTemplate, setPreviewTemplate] = React.useState('classic');
+
+  const [cardMotions] = React.useState(() => {
+    const shuffle = (arr) => {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+    const ambients = shuffle(['ambFloat', 'ambSway', 'ambBreath', 'ambTilt']);
+    const icons = shuffle(['iconBob', 'iconPulse', 'iconSwing', 'iconSpin']);
+    return Array.from({ length: 4 }, (_, i) => ({
+      ambient: ambients[i],
+      icon: icons[i],
+      dur: (4 + Math.random() * 3).toFixed(2),
+      delay: (Math.random() * 1.5).toFixed(2),
+    }));
+  });
+
+  const [spot, setSpot] = React.useState({ x: -400, y: -400, visible: false });
+  const heroRef = React.useRef(null);
+
+  const handleHeroMove = (e) => {
+    const rect = heroRef.current.getBoundingClientRect();
+    setSpot({ x: e.clientX - rect.left, y: e.clientY - rect.top, visible: true });
+  };
+
+  const handleHeroLeave = () => setSpot((s) => ({ ...s, visible: false }));
 
   const projectMessage = encodeURIComponent('Hi, I want to start a project with Swag Solutions.');
   const weddingMessage = encodeURIComponent('Hi, I want to request a custom wedding invitation webpage.');
@@ -376,16 +413,115 @@ export default function Home() {
           animation: heroReveal .7s cubic-bezier(.2,.8,.2,1) both;
         }
 
+        @keyframes ambFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+
+        @keyframes ambSway {
+          0%, 100% { transform: translateX(0) rotate(0deg); }
+          50% { transform: translateX(8px) rotate(1.2deg); }
+        }
+
+        @keyframes ambBreath {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+        }
+
+        @keyframes ambTilt {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(-1.5deg); }
+        }
+
+        @keyframes iconBob {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+
+        @keyframes iconPulse {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+          50% { transform: scale(1.12); box-shadow: 0 0 18px rgba(255,255,255,0.18); }
+        }
+
+        @keyframes iconSwing {
+          0%, 100% { transform: rotate(-8deg); }
+          50% { transform: rotate(8deg); }
+        }
+
+        @keyframes iconSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .hero-card-ambient {
+          will-change: transform;
+          animation: var(--amb-name, ambFloat) var(--amb-dur, 5s) var(--amb-delay, 0s) infinite ease-in-out;
+        }
+
+        .hero-icon-motion {
+          transform-origin: center 35%;
+          animation: var(--icon-name, iconBob) var(--icon-dur, 5s) ease-in-out var(--icon-delay, 0s) infinite;
+        }
+
+        @keyframes meshDrift {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-3%, -2%) scale(1.08); }
+          100% { transform: translate(2%, 3%) scale(1.04); }
+        }
+
+        @keyframes gridPan {
+          from { background-position: 0 0; }
+          to { background-position: 88px 88px; }
+        }
+
+        @keyframes dotTwinkle {
+          0%, 100% { opacity: 0.05; transform: scale(0.6); }
+          50% { opacity: var(--tw-op, 0.9); transform: scale(1); }
+        }
+
+        .hero-mesh {
+          position: absolute;
+          inset: -10%;
+          pointer-events: none;
+          background:
+            radial-gradient(ellipse 40% 32% at 15% 20%, rgba(59, 130, 246, 0.28), transparent 60%),
+            radial-gradient(ellipse 36% 28% at 85% 22%, rgba(139, 92, 246, 0.24), transparent 60%),
+            radial-gradient(ellipse 42% 34% at 72% 82%, rgba(16, 185, 129, 0.16), transparent 60%),
+            radial-gradient(ellipse 46% 38% at 22% 78%, rgba(236, 72, 153, 0.13), transparent 60%),
+            linear-gradient(180deg, rgba(15, 23, 42, 0.97), rgba(15, 23, 42, 0.9) 50%, rgba(30, 41, 59, 0.65));
+          animation: meshDrift 22s ease-in-out infinite alternate;
+          will-change: transform;
+        }
+
+        .hero-grid-pan {
+          background-image: linear-gradient(rgba(255, 255, 255, 0.65) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.65) 1px, transparent 1px);
+          background-size: 44px 44px;
+          animation: gridPan 60s linear infinite;
+        }
+
+        .hero-spotlight {
+          position: absolute;
+          border-radius: 9999px;
+          pointer-events: none;
+          background: radial-gradient(circle, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.1) 50%, transparent 72%);
+          will-change: left, top, opacity;
+        }
+
         @media (prefers-reduced-motion: reduce) {
           .hero-title-line,
           .hero-copy-reveal,
           .hero-title-swag,
           .service-reveal,
           .hero-card-reveal,
+          .hero-card-ambient,
+          .hero-icon-motion,
+          .hero-mesh,
+          .hero-grid-pan,
+          .hero-spotlight,
           .hero-orb,
           .hero-orb-2,
           .hero-orb-3 {
-            animation: none;
+            animation: none !important;
             opacity: 1;
           }
           [style*="ringRotate"] {
@@ -394,9 +530,22 @@ export default function Home() {
         }
       `}</style>
 
-      <section id="home" className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="hero-bg-gradient absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_10%_90%,rgba(37,99,235,.22),transparent_55%),radial-gradient(ellipse_70%_55%_at_85%_15%,rgba(139,92,246,.18),transparent_50%),radial-gradient(ellipse_50%_40%_at_50%_50%,rgba(16,185,129,.08),transparent_45%),linear-gradient(180deg,rgba(15,23,42,.97),rgba(15,23,42,.92)_50%,rgba(30,41,59,.6))]" />
-        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(255,255,255,.65)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.65)_1px,transparent_1px)] [background-size:44px_44px]" />
+      <section id="home" ref={heroRef} onMouseMove={handleHeroMove} onMouseLeave={handleHeroLeave} className="relative overflow-hidden bg-slate-950 text-white">
+        <div className="hero-mesh" />
+        <div className="hero-grid-pan absolute inset-0 opacity-[0.05]" />
+
+        <div
+          className="hero-spotlight"
+          style={{
+            left: spot.x,
+            top: spot.y,
+            width: 420,
+            height: 420,
+            transform: 'translate(-50%, -50%)',
+            opacity: spot.visible ? 1 : 0,
+            transition: 'left .5s ease-out, top .5s ease-out, opacity .45s ease',
+          }}
+        />
 
         <div className="hero-orb pointer-events-none absolute -left-40 bottom-0 h-[30rem] w-[30rem] rounded-full bg-blue-600/15 blur-3xl" />
         <div className="hero-orb-2 pointer-events-none absolute -right-32 top-0 h-[28rem] w-[28rem] rounded-full bg-violet-500/12 blur-3xl" />
@@ -453,25 +602,47 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-copy-reveal hidden lg:grid grid-cols-2 gap-4 self-center" style={{ animationDelay: '780ms' }}>
-            {[
-              { icon: Globe, title: 'Web Solutions', desc: 'Fast, responsive websites and web apps.', color: 'text-sky-300', bg: 'bg-sky-500/10', border: 'hover:border-sky-400/30' },
-              { icon: Table, title: 'GPoS POS', desc: 'Complete point-of-sale for shops.', color: 'text-emerald-300', bg: 'bg-emerald-500/10', border: 'hover:border-emerald-400/30' },
-              { icon: QrCode, title: 'Free Tools', desc: 'Useful browser-based utilities.', color: 'text-blue-300', bg: 'bg-blue-500/10', border: 'hover:border-blue-400/30' },
-              { icon: Heart, title: 'Wedding Cards', desc: 'Custom invitation webpages.', color: 'text-rose-300', bg: 'bg-rose-500/10', border: 'hover:border-rose-400/30' },
-            ].map(({ icon: Icon, title, desc, color, bg, border }, i) => (
-              <div
-                key={title}
-                className={`hero-card-reveal group rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 ${border}`}
-                style={{ animationDelay: `${780 + i * 100}ms` }}
-              >
-                <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-lg ${bg}`}>
-                  <Icon size={20} className={color} />
+          <div
+            className="hero-copy-reveal relative grid grid-cols-1 gap-4 self-center sm:grid-cols-2"
+            style={{ animationDelay: '780ms' }}
+          >
+            {heroCards.map(({ icon: Icon, title, desc, tag, to, color, bg, border }, i) => {
+              const motion = cardMotions[i];
+              return (
+                <div
+                  key={title}
+                  className="hero-card-ambient"
+                  style={{
+                    '--amb-name': motion.ambient,
+                    '--amb-dur': `${motion.dur}s`,
+                    '--amb-delay': `${motion.delay}s`,
+                  }}
+                >
+                  <Link
+                    to={to}
+                    className={`hero-card-reveal group relative flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-all duration-300 hover:z-10 hover:scale-110 hover:bg-white/10 hover:border-white/25 hover:shadow-[0_22px_55px_rgba(0,0,0,0.55)] ${border}`}
+                    style={{ animationDelay: `${780 + i * 100}ms` }}
+                  >
+                    <ArrowUpRight size={16} className="absolute right-4 top-4 text-slate-500 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div
+                      className={`hero-icon-motion mb-4 flex h-10 w-10 items-center justify-center rounded-lg ${bg}`}
+                      style={{
+                        '--icon-name': motion.icon,
+                        '--icon-dur': `${motion.dur}s`,
+                        '--icon-delay': `${motion.delay}s`,
+                      }}
+                    >
+                      <Icon size={20} className={color} />
+                    </div>
+                    <h3 className="text-sm font-bold text-white">{title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-slate-400">{desc}</p>
+                    <span className="mt-3 inline-block rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-slate-300 transition-colors duration-300 group-hover:border-white/20 group-hover:bg-white/10">
+                      {tag}
+                    </span>
+                  </Link>
                 </div>
-                <h3 className="text-sm font-bold text-white">{title}</h3>
-                <p className="mt-1 text-xs leading-5 text-slate-400">{desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
