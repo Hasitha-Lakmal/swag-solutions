@@ -2,6 +2,8 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import SEO from "../../components/SEO";
 import { assetUrl } from "../../utils/assetUrl";
+import { cardsPrefix } from "../../utils/site";
+import WeddingTemplateSwitcher from "./WeddingTemplateSwitcher";
 import {
   CalendarDays, CheckCircle2, Copy, Heart,
   ImagePlus, MapPin, Phone, Sparkles
@@ -202,8 +204,7 @@ export default function ClassicWeddingPage() {
   const [guestName, setGuestName] = useState(details.guest === "Dear Guest" ? "" : details.guest);
   const currentGuest = guestName.trim() || details.guest;
 
-  const cardsSite = window.location.hostname === 'cards.swagsolutions.lk';
-  const shareLink = `${window.location.origin}${window.location.pathname}#${cardsSite ? '' : '/wedding'}/classic?guest=${encodeURIComponent(currentGuest)}&bride=${encodeURIComponent(details.bride)}&groom=${encodeURIComponent(details.groom)}`;
+  const shareLink = `${window.location.origin}${window.location.pathname}#${cardsPrefix}/classic?guest=${encodeURIComponent(currentGuest)}&bride=${encodeURIComponent(details.bride)}&groom=${encodeURIComponent(details.groom)}`;
 
   const copyLink = async () => {
     await navigator.clipboard.writeText(shareLink);
@@ -241,6 +242,7 @@ export default function ClassicWeddingPage() {
       <NatureParticles />
 
       <div style={{ minHeight:"100vh", background:"linear-gradient(160deg,#f5f0e8 0%,#eae8dc 50%,#f0ece0 100%)", padding:"28px 14px 72px", position:"relative", zIndex:1 }}>
+        <WeddingTemplateSwitcher active="classic" />
         <div style={{ maxWidth:1100, margin:"0 auto", display:"grid", gap:28, gridTemplateColumns:"min(480px,100%) 1fr", alignItems:"start" }}>
 
           {/* ══ INVITATION CARD ══ */}

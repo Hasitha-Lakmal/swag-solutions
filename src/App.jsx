@@ -6,6 +6,7 @@ import Home from './pages/Home';
 const Gpos = React.lazy(() => import('./pages/Gpos'));
 const ClassicWeddingPage = React.lazy(() => import('./pages/wedding/ClassicWeddingPage'));
 const LuxuryWeddingPage = React.lazy(() => import('./pages/wedding/LuxuryWeddingPage'));
+const WeddingSelectPage = React.lazy(() => import('./pages/wedding/WeddingSelectPage'));
 const ExcelPosSystem = React.lazy(() => import('./pages/tools/ExcelPosSystem'));
 const LeasingCalculator = React.lazy(() => import('./pages/tools/LeasingCalculator'));
 const ChequeWriter = React.lazy(() => import('./pages/tools/ChequeWriter'));
@@ -33,10 +34,10 @@ export default function App() {
       <HashRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Navigate to="/classic" replace />} />
+            <Route path="/" element={<WeddingSelectPage />} />
             <Route path="/classic" element={<ClassicWeddingPage />} />
             <Route path="/navy" element={<LuxuryWeddingPage />} />
-            <Route path="*" element={<Navigate to="/classic" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </HashRouter>
@@ -50,7 +51,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="gpos" element={<Gpos />} />
-          <Route path="wedding" element={<Navigate to="/wedding/classic" replace />} />
+          <Route path="wedding" element={<WeddingSelectPage />} />
           <Route path="wedding/classic" element={<ClassicWeddingPage />} />
           <Route path="wedding/navy" element={<LuxuryWeddingPage />} />
 

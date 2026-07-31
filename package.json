@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "deploy:cards": "npm run build && npx gh-pages -d dist -c cards.swagsolutions.lk -r https://github.com/Hasitha-Lakmal/swag-cards.git"
+    "deploy:cards": "npm run build && node -e \"require('fs').writeFileSync('dist/CNAME','cards.swagsolutions.lk')\" && npx gh-pages -d dist -r https://github.com/Hasitha-Lakmal/swag-cards.git"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.1.0",
