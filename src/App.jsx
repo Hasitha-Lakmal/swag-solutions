@@ -16,6 +16,7 @@ const RestoSystem = React.lazy(() => import('./pages/tools/RestoSystem'));
 const QrCodeGenerator = React.lazy(() => import('./pages/tools/QrCodeGenerator'));
 const ImageCompressor = React.lazy(() => import('./pages/tools/ImageCompressor'));
 const PdfTools = React.lazy(() => import('./pages/tools/PdfTools'));
+const TimelineVisualizer = React.lazy(() => import('./pages/tools/TimelineVisualizer'));
 
 function PageLoader() {
   return (
@@ -64,6 +65,7 @@ export default function App() {
           <Route path="tools/qr-generator" element={<QrCodeGenerator />} />
           <Route path="tools/image-compressor" element={<ImageCompressor />} />
           <Route path="tools/pdf-tools" element={<PdfTools />} />
+          <Route path="tools/timeline-visualizer" element={<TimelineVisualizer />} />
         </Route>
       </Routes>
     </Suspense>
