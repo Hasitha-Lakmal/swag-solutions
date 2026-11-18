@@ -104,6 +104,7 @@ export default function Layout() {
               <NavLink href="#home" isHome={isHome} className="hover:text-blue-600 transition-colors">Home</NavLink>
               <NavLink href="#about" isHome={isHome} className="hover:text-blue-600 transition-colors">About</NavLink>
               <NavLink to="/gpos" className="hover:text-emerald-600 transition-colors">GPoS</NavLink>
+              <NavLink to="/zenta" className="hover:text-blue-600 transition-colors">Zenta</NavLink>
               <NavLink href="#wedding" isHome={isHome} className="hover:text-rose-500 transition-colors flex items-center gap-1">
                 <Heart size={14} className="text-rose-500 animate-heart-pulse" /> Wedding Cards
               </NavLink>
@@ -122,6 +123,7 @@ export default function Layout() {
               <NavLink href="#home" isHome={isHome} className="text-slate-600 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
               <NavLink href="#about" isHome={isHome} className="text-slate-600 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>About</NavLink>
               <NavLink to="/gpos" className="text-emerald-600" onClick={() => setIsMenuOpen(false)}>GPoS</NavLink>
+              <NavLink to="/zenta" className="text-blue-600" onClick={() => setIsMenuOpen(false)}>Zenta</NavLink>
               <NavLink href="#wedding" isHome={isHome} className="text-rose-500 flex items-center justify-center gap-2" onClick={() => setIsMenuOpen(false)}><Heart size={16} className="animate-heart-pulse" /> Wedding Cards</NavLink>
               <NavLink href="#tools" isHome={isHome} className="text-slate-600 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>Free Tools</NavLink>
               <NavLink href="#contact" isHome={isHome} className="text-slate-600 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>Contact</NavLink>

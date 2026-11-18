@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 
 const Gpos = React.lazy(() => import('./pages/Gpos'));
+const Zenta = React.lazy(() => import('./pages/Zenta'));
 const ClassicWeddingPage = React.lazy(() => import('./pages/wedding/ClassicWeddingPage'));
 const LuxuryWeddingPage = React.lazy(() => import('./pages/wedding/LuxuryWeddingPage'));
 const WeddingSelectPage = React.lazy(() => import('./pages/wedding/WeddingSelectPage'));
@@ -52,6 +53,7 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="gpos" element={<Gpos />} />
+          <Route path="zenta" element={<Zenta />} />
           <Route path="wedding" element={<WeddingSelectPage />} />
           <Route path="wedding/classic" element={<ClassicWeddingPage />} />
           <Route path="wedding/navy" element={<LuxuryWeddingPage />} />
