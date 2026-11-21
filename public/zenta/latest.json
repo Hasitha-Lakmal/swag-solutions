@@ -1,11 +1,11 @@
 {
-  "version": "1.0.1",
-  "notes": "Several PCs and outlets: one PC can now be the server (login screen -> Connection -> This PC is the server). Fixes and improvements.",
-  "pub_date": "2026-11-19T00:00:00Z",
+  "version": "1.0.2",
+  "notes": "Advance payments to suppliers and advances from customers (kept apart until assigned to a bill). Settings page in sections, with Check for updates.",
+  "pub_date": "2026-11-21T08:00:00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aGNEb1BxU1d2K21oTGZwVUppZk51RVpoU1R3UWhFbk4vYzRLSDBPN1RkbFZiM2RCM0ZVcnNCUXhDQ2xqUTl0Wks4Sk1pQ3ZhdjhicTY5UmRpeW5kdUFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MDI2OTMwCWZpbGU6WmVudGFfMS4wLjFfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC4xCmU5ZHVIanZGSCtFc0IzbGM0aE4wUEFORjdzTDZVcENlVjNWVEFFdDJYYWRFNzloTjA0aG9BUTh1dlNrR3J0WHRpdHJ5Y1JUNVlzb3M3SzJCd0JqNEJBPT0K",
-      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.1/Zenta_1.0.1_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aFJMazBMcDVzM3pNMHJLbVJSNlJYYTNTRStrRXpKTUY0NzdPNmUvMGtCb1VNYXRXenlZZk1KME5DNzJrUkwwU1UwdEdZTWRxZHd6cklMeFVLeWJLcmdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MjQ4NDIwCWZpbGU6WmVudGFfMS4wLjJfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC4yCndONHRlZFVxWG54N2hmSE5tZmZPYVBFY1EvMzBoay96cVdIMVNMclRTR3VtRGwzRFNlekZoM29SZmQxdExVSWVEeWl6VUZhR0FId2ZFM1pCWmowbENBPT0K",
+      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.2/Zenta_1.0.2_x64-setup.exe"
     }
   }
 }

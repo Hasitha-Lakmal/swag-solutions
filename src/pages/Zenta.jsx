@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 
 // keep in step with the latest release on github.com/Hasitha-Lakmal/zenta-releases
-const ZENTA_VERSION = '1.0.1';
+const ZENTA_VERSION = '1.0.2';
 const DOWNLOAD_URL = `https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v${ZENTA_VERSION}/Zenta_${ZENTA_VERSION}_x64-setup.exe`;
 
 const contactMessage = encodeURIComponent('Hi, I want to know more about Zenta accounts system.');
