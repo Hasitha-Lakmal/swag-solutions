@@ -1,11 +1,11 @@
 {
-  "version": "1.0.4",
-  "notes": "The server PC starts Zenta with Windows and keeps the server running in the tray when the window is closed.",
-  "pub_date": "2026-11-22T17:10:00Z",
+  "version": "1.0.5",
+  "notes": "Each PC reports its Zenta version and licence state once a day (no accounts data), so SWAG Solutions can look after your licence.",
+  "pub_date": "2026-11-22T17:45:00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aFc3ZHhjb1pBbSs1TzY0eHhNamRoNk00L1Vvd3JLeHhCZ2ZhbFhOQk5SZFBzM1lhY3hKald4cEhEcEtvdXJkV1grM2REZEhTaWFXYnNOZDhkQWdLUFFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MzY3MDczCWZpbGU6WmVudGFfMS4wLjRfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC40ClZaLzJ4UVhYYTdvcDNQVm1ONmxjN2NLM2ZFOXd1MzVJS0J4TWtScnZFYkkxb0lJY0t6em5QYzhqWU1LUkxXNS9DNjlJeDk3REROY1VaQzg4enFUNENRPT0K",
-      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.4/Zenta_1.0.4_x64-update.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aFU5bVdJS21OdG5wZVlqcFcrbWJYV2RXVWtZV1MrTjdjRDdydWNUdkUvTDBXeklGNTNpaFNNeElpUWdLTUw2RXhDbGpEUjVXSS9yMk9lRTd5eCtUQ2dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MzY5MzEzCWZpbGU6WmVudGFfMS4wLjVfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC41CnZRS0FrSERYWHdxRnJ3VjN1VHN2WVFuYVNtWUJWN1BQanMydStNUnhkZXVTbS9aUFgzYnRxYTIrWjNSRVBIQzF4Y1A3dXo0N1R1dFRNZ3JQUkpwMkNRPT0K",
+      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.5/Zenta_1.0.5_x64-update.exe"
     }
   }
 }
