@@ -7,6 +7,7 @@ import {
   BarChart3,
   Banknote,
   BookOpenCheck,
+  BriefcaseBusiness,
   Building2,
   CheckCircle2,
   Download,
@@ -23,8 +24,9 @@ import {
 } from 'lucide-react';
 
 // keep in step with the latest release on github.com/Hasitha-Lakmal/zenta-releases
-const ZENTA_VERSION = '1.0.3';
+const ZENTA_VERSION = '1.0.4';
 const DOWNLOAD_URL = `https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v${ZENTA_VERSION}/Zenta_${ZENTA_VERSION}_x64-setup.exe`;
+const GUIDE_URL = assetUrl('zenta/zenta-guide.pdf');
 
 const contactMessage = encodeURIComponent('Hi, I want to know more about Zenta accounts system.');
 const whatsappLink = `https://wa.me/${CONFIG.contact.whatsappNumber}?text=${contactMessage}`;
@@ -56,6 +58,11 @@ const features = [
     desc: 'Profit and loss with stock value, balance sheet, cash flow and daily summary. See the real gross profit, not just sales.',
   },
   {
+    icon: <BriefcaseBusiness size={24} />,
+    title: 'HR and payroll',
+    desc: 'Monthly payroll with EPF and ETF, no-pay, OT and allowances, payslips on A4 or thermal, staff loans, savings and leave.',
+  },
+  {
     icon: <Landmark size={24} />,
     title: 'Loans and fixed assets',
     desc: 'Loan and leasing installments split into capital and interest, fixed assets with depreciation, and year-end closing.',
@@ -63,7 +70,7 @@ const features = [
   {
     icon: <MonitorSmartphone size={24} />,
     title: 'Several PCs and outlets',
-    desc: 'One PC keeps the data and the other PCs connect to it, in the same shop or at a far outlet over the internet.',
+    desc: 'One PC is the server and starts with Windows; the other PCs connect to it, in the same shop or at a far outlet over the internet.',
   },
   {
     icon: <ShieldCheck size={24} />,
@@ -96,7 +103,7 @@ const zentaSchema = {
   softwareVersion: ZENTA_VERSION,
   downloadUrl: DOWNLOAD_URL,
   description:
-    'Zenta is a complete account-control system for shops in Sri Lanka: cash and bank, cheques, suppliers and customers, invoices, profit and loss, loans, fixed assets and several outlets.',
+    'Zenta is a complete account-control system for shops in Sri Lanka: cash and bank, cheques, suppliers and customers, invoices, profit and loss, HR and payroll with EPF/ETF, loans, fixed assets and several outlets.',
   publisher: { '@type': 'Organization', name: 'Swag Solutions' },
 };
 
@@ -105,8 +112,8 @@ export default function Zenta() {
     <div className="bg-white text-slate-950">
       <SEO
         title="Zenta Accounts – Account Control System for Shops"
-        description="Zenta by Swag Solutions: cash, bank, cheques, suppliers, customers, invoices, true profit, loans, fixed assets and several outlets in one Windows app. 14-day free trial."
-        keywords="zenta accounts, accounting software sri lanka, shop accounts system, cheque management software, supplier payment voucher, small business accounting sri lanka"
+        description="Zenta by Swag Solutions: cash, bank, cheques, suppliers, customers, invoices, true profit, HR and payroll with EPF/ETF, loans, fixed assets and several outlets in one Windows app. 14-day free trial."
+        keywords="zenta accounts, accounting software sri lanka, payroll software sri lanka, epf etf payroll, shop accounts system, cheque management software, supplier payment voucher, small business accounting sri lanka"
       />
       <SchemaMarkup schema={zentaSchema} />
 
@@ -121,7 +128,7 @@ export default function Zenta() {
               Every rupee of your shop, under control.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Zenta keeps cash, bank, cheques, suppliers, customers and profit in one place.
+              Zenta keeps cash, bank, cheques, suppliers, customers, staff salaries and profit in one place.
               Built by Swag Solutions with a real shop, for shops that want to know exactly
               where the money is, every day.
             </p>
@@ -143,6 +150,15 @@ export default function Zenta() {
                 WhatsApp for a key
               </a>
             </div>
+            <a
+              href={GUIDE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-300 underline-offset-4 hover:text-blue-200 hover:underline"
+            >
+              <FileText size={16} />
+              Download the product guide (PDF, 4 pages)
+            </a>
             <p className="mt-4 text-sm text-slate-400">
               Version {ZENTA_VERSION} · Windows 10 / 11 · 14 days free, then lifetime or yearly licence
             </p>
@@ -242,6 +258,10 @@ export default function Zenta() {
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-500 px-5 py-3 font-semibold text-white transition hover:bg-blue-400">
               <MessageCircle size={18} />
               WhatsApp
+            </a>
+            <a href={GUIDE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/15">
+              <FileText size={18} />
+              Product guide (PDF)
             </a>
             <a href={`mailto:${CONFIG.contact.email}`} className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-5 py-3 font-semibold text-white transition hover:bg-white/15">
               <Mail size={18} />

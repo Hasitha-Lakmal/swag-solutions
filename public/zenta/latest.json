@@ -1,11 +1,11 @@
 {
-  "version": "1.0.3",
-  "notes": "HR & Payroll: monthly payroll with EPF/ETF, allowances, no-pay and OT, staff loans, staff savings, leave register and payslips (A4 and thermal).",
-  "pub_date": "2026-11-21T11:30:00Z",
+  "version": "1.0.4",
+  "notes": "The server PC starts Zenta with Windows and keeps the server running in the tray when the window is closed.",
+  "pub_date": "2026-11-22T17:10:00Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aFowQmxOdXpxQmFwdzB0MEo4UFc2N3VMMHhNRUJ4aHBRYWROWnhkeU5UV2hVZEVhOVdJTDF5WjZPTXZRTUZ5VXJaZ2VONFRWMDVMd0JzbzRiaCsya2dNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MjYwMzk0CWZpbGU6WmVudGFfMS4wLjNfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC4zCktmRXpKelBMK2hxVVZmNjU3bGU5K1FtRkZuZFFCaVgzV2JueXpRaUdYcURsdkVaTkNGVUFEbnMzL25meFlyM2pDbVFGUjhXRE12dnNwaFl0Qm5rU0R3PT0K",
-      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.3/Zenta_1.0.3_x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRT0hmRzBEdVJ0aFc3ZHhjb1pBbSs1TzY0eHhNamRoNk00L1Vvd3JLeHhCZ2ZhbFhOQk5SZFBzM1lhY3hKald4cEhEcEtvdXJkV1grM2REZEhTaWFXYnNOZDhkQWdLUFFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1MzY3MDczCWZpbGU6WmVudGFfMS4wLjRfeDY0LXNldHVwLmV4ZQl2ZXJzaW9uOjEuMC40ClZaLzJ4UVhYYTdvcDNQVm1ONmxjN2NLM2ZFOXd1MzVJS0J4TWtScnZFYkkxb0lJY0t6em5QYzhqWU1LUkxXNS9DNjlJeDk3REROY1VaQzg4enFUNENRPT0K",
+      "url": "https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v1.0.4/Zenta_1.0.4_x64-update.exe"
     }
   }
 }
