@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 
 // keep in step with the latest release on github.com/Hasitha-Lakmal/zenta-releases
-const ZENTA_VERSION = '1.0.4';
+const ZENTA_VERSION = '1.0.5';
 const DOWNLOAD_URL = `https://github.com/Hasitha-Lakmal/zenta-releases/releases/download/v${ZENTA_VERSION}/Zenta_${ZENTA_VERSION}_x64-setup.exe`;
 const GUIDE_URL = assetUrl('zenta/zenta-guide.pdf');
 
@@ -213,7 +213,7 @@ export default function Zenta() {
             </div>
             <div className="mt-8 flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600">
               <Building2 size={20} className="mt-0.5 shrink-0 text-blue-600" />
-              Your data stays on your own PC. Nothing is uploaded unless you choose a cloud folder for backups.
+              Your accounts stay on your own PC and are never sent anywhere, unless you choose a cloud folder for backups. To look after the licence, Zenta only tells us the business name, the PC and the Zenta version.
             </div>
           </div>
           <div>
