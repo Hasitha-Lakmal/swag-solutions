@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import PageLoader from './components/PageLoader';
+import { isCardsSite } from './utils/site';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 
@@ -19,35 +21,23 @@ const ImageCompressor = React.lazy(() => import('./pages/tools/ImageCompressor')
 const PdfTools = React.lazy(() => import('./pages/tools/PdfTools'));
 const TimelineVisualizer = React.lazy(() => import('./pages/tools/TimelineVisualizer'));
 
-function PageLoader() {
-  return (
-    <div className="min-h-[50vh] bg-slate-50 px-6 py-24 text-center text-slate-600">
-      Loading...
-    </div>
-  );
-}
-
-const isCardsSite =
-  typeof window !== 'undefined' && window.location.hostname === 'cards.swagsolutions.lk';
-
+// The router is provided by the caller: BrowserRouter / HashRouter in main.jsx,
+// StaticRouter in entry-server.jsx (build-time prerender).
 export default function App() {
   if (isCardsSite) {
     return (
-      <HashRouter>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<WeddingSelectPage />} />
-            <Route path="/classic" element={<ClassicWeddingPage />} />
-            <Route path="/navy" element={<LuxuryWeddingPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-      </HashRouter>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<WeddingSelectPage />} />
+          <Route path="/classic" element={<ClassicWeddingPage />} />
+          <Route path="/navy" element={<LuxuryWeddingPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
     );
   }
 
   return (
-    <HashRouter>
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -68,9 +58,9 @@ export default function App() {
           <Route path="tools/image-compressor" element={<ImageCompressor />} />
           <Route path="tools/pdf-tools" element={<PdfTools />} />
           <Route path="tools/timeline-visualizer" element={<TimelineVisualizer />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </Suspense>
-    </HashRouter>
   );
 }

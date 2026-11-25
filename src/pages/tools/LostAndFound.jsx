@@ -24,9 +24,7 @@ const emptyForm = {
 };
 
 export default function LostAndFound({ onBack }) {
-  React.useEffect(() => {
-    document.title = "Lost & Found Database - Utility Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [records, setRecords] = useState(() => {
     const saved = localStorage.getItem('lostFoundData');

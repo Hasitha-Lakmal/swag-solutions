@@ -2,7 +2,7 @@
 // No external dependencies needed — pure browser APIs (Canvas, FileReader, Blob)
 // Just import and drop into any React project.
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 
 /* ─── helpers ─── */
 const fmt = (b) => {
@@ -81,9 +81,7 @@ async function compressImage(file, quality, maxW, maxH, outputFormat) {
 
 /* ─── main component ─── */
 export default function ImageCompressor() {
-  useEffect(() => {
-    document.title = "Image Compressor - Utility Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [files, setFiles] = useState([]);       // [{file, status:'idle'|'processing'|'done'|'error', result, error}]
   const [quality, setQuality] = useState(75);

@@ -44,9 +44,7 @@ const PRESETS = {
 };
 
 export default function LeasingCalculator({ onBack }) {
-  React.useEffect(() => {
-    document.title = "Leasing Calculator - Finance Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [mode, setMode]       = useState('vehicle');
   const [form, setForm]       = useState(PRESETS.vehicle);
@@ -95,7 +93,7 @@ export default function LeasingCalculator({ onBack }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span style={{ fontSize: '22px' }}>📊</span>
           <div>
-            <div style={{ fontWeight: '700', fontSize: '16px' }}>Leasing Calculator</div>
+            <h1 style={{ fontWeight: '700', fontSize: '16px', margin: 0 }}>Leasing Calculator</h1>
             <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)' }}>House & Vehicle • EMI Schedule</div>
           </div>
         </div>

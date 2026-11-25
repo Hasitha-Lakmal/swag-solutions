@@ -1028,9 +1028,7 @@ function ReportsPage({ orders, settings }) {
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
 export default function RestaurantPOS() {
-  useEffect(() => {
-    document.title = "Resto Restaurant POS - Utility Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [page, setPage] = useState("pos");
   const [items, setItems] = useState(() => lsGet("pos_items", DEFAULT_ITEMS));

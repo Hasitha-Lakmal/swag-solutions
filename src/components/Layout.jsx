@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart, Mail, MessageCircle, Phone } from 'lucide-react';
 import { CONFIG } from '../config';
 import { assetUrl } from '../utils/assetUrl';
+import { RouteSEO } from './SEO';
+import PageLoader from './PageLoader';
 
 function NavLink({ to, href, children, className, onClick }) {
   if (href) {
@@ -91,6 +93,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-500/30 selection:text-blue-900 flex flex-col">
+      <RouteSEO />
       {!isAppRoute && <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 text-slate-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
@@ -133,7 +136,9 @@ export default function Layout() {
       </nav>}
 
       <main className={`flex-1 ${isAppRoute ? '' : 'pt-20'}`}>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
 
       {!isAppRoute && (

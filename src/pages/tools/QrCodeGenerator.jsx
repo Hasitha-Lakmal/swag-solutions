@@ -18,9 +18,7 @@ const EC_LEVELS = [
 ];
 
 export default function QRGenerator() {
-  useEffect(() => {
-    document.title = "QR Code Generator - Utility Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [tab, setTab]         = useState("url");
   const [url, setUrl]         = useState("https://swagsolutions.lk/");

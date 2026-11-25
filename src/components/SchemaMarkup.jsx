@@ -1,26 +1,7 @@
-import { useEffect } from 'react';
-
+// Renders JSON-LD inline so it is part of the prerendered HTML that search
+// engines read (Google accepts JSON-LD anywhere in the document).
 export default function SchemaMarkup({ schema }) {
-  useEffect(() => {
-    if (!schema) return;
-    
-    // Check if script tag already exists
-    let script = document.querySelector('script[type="application/ld+json"]');
-    if (!script) {
-      script = document.createElement('script');
-      script.type = 'application/ld+json';
-      document.head.appendChild(script);
-    }
-    
-    script.text = JSON.stringify(schema);
-    
-    // Cleanup on unmount
-    return () => {
-      if (script) {
-        script.text = '';
-      }
-    };
-  }, [schema]);
-
-  return null;
+  if (!schema) return null;
+  const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }
