@@ -262,8 +262,10 @@ const homeSchema = {
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "LK",
-        "addressLocality": "Colombo"
+        "addressRegion": "Central Province",
+        "addressLocality": "Dambulla"
       },
+      "areaServed": { "@type": "Country", "name": "Sri Lanka" },
       "sameAs": [
         "https://wa.me/94706702048"
       ]
