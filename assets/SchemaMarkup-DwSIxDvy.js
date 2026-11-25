@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-CUBmso4R.js";var t=e();function n({schema:e}){return e?(0,t.jsx)(`script`,{type:`application/ld+json`,dangerouslySetInnerHTML:{__html:JSON.stringify(e).replace(/</g,`\\u003c`)}}):null}export{n as t};

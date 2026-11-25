@@ -1,1 +1,0 @@
-var e=typeof window<`u`&&window.location.hostname===`cards.swagsolutions.lk`,t=e?``:`/wedding`;export{e as n,t};
