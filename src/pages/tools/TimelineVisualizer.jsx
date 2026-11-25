@@ -416,9 +416,7 @@ export default function TimelineVisualizer() {
   const [language, setLanguage] = useState("en");
   const t = I18N[language] || I18N.en;
 
-  useEffect(() => {
-    document.title = t.title;
-  }, [t]);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [step, setStep] = useState(1);
 

@@ -75,9 +75,7 @@ function formatAmount(val) {
 }
 
 export default function ChequeWriter() {
-  useEffect(() => {
-    document.title = "Cheque Writer - Business Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [payee, setPayee] = useState("");
   const [amount, setAmount] = useState("");

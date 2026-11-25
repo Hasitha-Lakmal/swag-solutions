@@ -247,20 +247,14 @@ const homeSchema = {
       "url": "https://swagsolutions.lk/",
       "name": "Swag Solutions",
       "description": "Practical websites, custom software, GPoS POS systems, free tools, and custom wedding invitations in Sri Lanka.",
-      "potentialAction": [{
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://swagsolutions.lk/?s={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }]
+      "publisher": { "@id": "https://swagsolutions.lk/#organization" }
     },
     {
       "@type": "ProfessionalService",
       "@id": "https://swagsolutions.lk/#organization",
       "name": "Swag Solutions",
       "image": "https://swagsolutions.lk/logo.png",
+      "logo": "https://swagsolutions.lk/logo.png",
       "url": "https://swagsolutions.lk/",
       "telephone": "+94706702048",
       "email": "info@swagsolutions.lk",
@@ -268,8 +262,10 @@ const homeSchema = {
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "LK",
-        "addressLocality": "Colombo"
+        "addressRegion": "Central Province",
+        "addressLocality": "Dambulla"
       },
+      "areaServed": { "@type": "Country", "name": "Sri Lanka" },
       "sameAs": [
         "https://wa.me/94706702048"
       ]

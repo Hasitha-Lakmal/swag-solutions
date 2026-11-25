@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Type, Copy, Check } from 'lucide-react';
 
 function numberToWords(n) {
@@ -37,9 +37,7 @@ function numberToWords(n) {
 }
 
 export default function NumbersToWords() {
-  useEffect(() => {
-    document.title = "Numbers to Words - Utility Tool | Swag Solutions";
-  }, []);
+  // Page title/meta come from src/seo/routeMeta.js (RouteSEO in Layout).
 
   const [number, setNumber] = useState('');
   const [copied, setCopied] = useState(false);
