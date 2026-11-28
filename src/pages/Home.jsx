@@ -748,6 +748,65 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="zenta" className="border-b border-slate-200 bg-slate-50 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-lg border border-blue-600/20 bg-blue-600/10 px-3 py-2 text-sm font-bold uppercase tracking-wider text-blue-700">
+                <ReceiptText size={16} />
+                Zenta accounts system
+              </div>
+              <h2 className="text-3xl font-black tracking-tight text-slate-950 md:text-5xl">
+                Every rupee of your shop, under control.
+              </h2>
+              <p className="mt-5 text-base leading-8 text-slate-600">
+                Zenta is our Windows accounting and payroll software. It keeps cash, bank,
+                cheques, suppliers, customers, staff salaries and profit in one place, across
+                several PCs and outlets.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  to="/zenta"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-500"
+                >
+                  View Zenta page
+                  <ArrowRight size={18} />
+                </Link>
+                <a
+                  href={`https://wa.me/${CONFIG.contact.whatsappNumber}?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Zenta%20Accounts.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 font-semibold text-slate-800 transition hover:border-blue-300"
+                >
+                  WhatsApp Zenta
+                  <MessageCircle size={18} />
+                </a>
+              </div>
+              <p className="mt-4 text-sm text-slate-500">Windows 10 / 11 · 14-day free trial with every feature</p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { icon: Calculator, title: 'Daily cash and bank', desc: 'Income, expenses, transfers, cash count and day close for every outlet.' },
+                { icon: Printer, title: 'Cheques under control', desc: 'Issued and received cheques, realise and bounce, and bank reconciliation.' },
+                { icon: Boxes, title: 'Suppliers and customers', desc: 'Bill-wise payments and receipts, returns, statements and aging.' },
+                { icon: BarChart3, title: 'True profit and reports', desc: 'Profit and loss with stock value, balance sheet, cash flow and daily summary.' },
+                { icon: ReceiptText, title: 'HR and payroll', desc: 'Monthly payroll with EPF and ETF, OT, allowances, payslips and staff loans.' },
+                { icon: ShieldCheck, title: 'Users, audit and backups', desc: 'User rights, a full change log, and automatic backups with one-click restore.' },
+              ].map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="rounded-lg border border-slate-200 bg-white p-5">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white">
+                    <Icon size={20} />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-950">{title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="wedding" className="border-b border-slate-200 bg-slate-50 px-6 py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
           <div>
